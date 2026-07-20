@@ -1,0 +1,29 @@
+# Dependencies and generated output
+node_modules/
+dist/
+coverage/
+
+# Local tooling and caches
+.vite/
+.wrangler/
+*.log
+
+# Local configuration and secrets
+.env
+.env.*
+.dev.vars
+.dev.vars.*
+.envrc
+.direnv/
+.npmrc
+*.local
+*.key
+*.pem
+*.p12
+*.pfx
+*.jks
+
+# Editor and operating-system files
+.DS_Store
+.idea/
+.vscode/

@@ -1,0 +1,13 @@
+{
+  "name": "Talents landing page",
+  "image": "docker.io/library/node:24-bookworm",
+  "forwardPorts": [5173],
+  "portsAttributes": {
+    "5173": {
+      "label": "Vite development server",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "postCreateCommand": "npm ci --ignore-scripts",
+  "remoteUser": "node"
+}
