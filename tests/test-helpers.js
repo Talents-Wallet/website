@@ -80,17 +80,45 @@ export async function inspectLayout(page, viewport) {
     }
 
     const heading = rectFor('h1');
+    const headingText = textRectFor('h1');
     const intro = rectFor('.product-lede');
     const phone = rectFor('.phone-frame');
     const signup = rectFor('.signup-lede');
     const signupShell = rectFor('.substack-embed-shell');
 
     assertInsideViewport('headline box', heading);
-    assertInsideViewport('headline text', textRectFor('h1'));
+    assertInsideViewport('headline text', headingText);
     assertInsideViewport('product description', textRectFor('.product-lede'));
     assertInsideViewport('phone mockup', phone);
     assertInsideViewport('signup prompt', textRectFor('.signup-lede'));
     assertInsideViewport('signup shell', signupShell);
+
+    const headingLineCount = new Set(
+      [...document.querySelectorAll('h1 > span')].map((line) =>
+        Math.round(line.getBoundingClientRect().top),
+      ),
+    ).size;
+    const expectedHeadingLineCount = width > 900 ? 2 : 3;
+    if (headingLineCount !== expectedHeadingLineCount) {
+      violations.push(
+        'headline uses ' +
+          headingLineCount +
+          ' visual lines; expected ' +
+          expectedHeadingLineCount,
+      );
+    }
+
+    if (width > 900 && headingText && phone) {
+      const overlapWidth =
+        Math.min(headingText.right, phone.right) -
+        Math.max(headingText.left, phone.left);
+      const overlapHeight =
+        Math.min(headingText.bottom, phone.bottom) -
+        Math.max(headingText.top, phone.top);
+      if (overlapWidth > tolerance && overlapHeight > tolerance) {
+        violations.push('headline text overlaps the phone mockup in the two-column layout');
+      }
+    }
 
     if (width <= 900 && heading && intro && phone && signup) {
       const isMobileOrder =

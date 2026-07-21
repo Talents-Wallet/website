@@ -104,6 +104,25 @@ iframe:focus-visible {
   white-space: nowrap;
 }
 
+.hero h1 > span {
+  display: block;
+  white-space: nowrap;
+}
+
+.hero h1 > span:nth-child(n + 2) {
+  font-size: .67em;
+}
+
+@media (min-width: 901px) {
+  .hero h1 > span:first-child {
+    margin-bottom: -.1em;
+  }
+
+  .hero h1 > span:nth-child(n + 2) {
+    display: inline;
+  }
+}
+
 .product-lede,
 .signup-lede {
   max-width: 820px;

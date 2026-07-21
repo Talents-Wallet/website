@@ -7,6 +7,21 @@ import {
 } from './responsive-dimensions.js';
 import { assertEmbedContract, inspectLayout, openLanding } from './test-helpers.js';
 
+test('private-money heading and metadata are consistent', async ({ page }) => {
+  await openLanding(page);
+
+  await expect(page.locator('h1 > span')).toHaveText([
+    'Talents',
+    'Private money',
+    'made simple',
+  ]);
+  await expect(page).toHaveTitle('Talents Private money made simple');
+  await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
+    'content',
+    'Talents Private money made simple',
+  );
+});
+
 test('dense width and height sweep has no layout violations @responsive-sweep', async ({
   page,
 }, testInfo) => {
