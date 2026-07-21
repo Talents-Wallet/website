@@ -15,8 +15,10 @@ concurrency:
 
 jobs:
   verify:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
+    # Pin the OS because font rendering is part of the committed screenshot
+    # baselines. Moving to a new runner image should be an explicit review.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
     steps:
       - name: Check out repository
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
@@ -41,3 +43,20 @@ jobs:
 
       - name: Build site
         run: npm run build
+
+      - name: Install responsive-test browsers
+        run: npx playwright install --with-deps chromium firefox webkit
+
+      - name: Test responsive layouts
+        run: npm run test:responsive
+
+      - name: Upload responsive-test report on failure
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: responsive-test-report
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 14

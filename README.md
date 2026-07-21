@@ -15,6 +15,26 @@ npm run dev
 
 Open the local URL printed by Vite, usually `http://localhost:5173`.
 
+## Run tests
+
+Install the browsers once after `npm ci`:
+
+```bash
+npx playwright install --with-deps chromium firefox webkit
+```
+
+Run the tests:
+
+```bash
+npm run test
+```
+
+Regenerate test baselines after an intentional design change:
+
+```bash
+npm run test:update
+```
+
 ## Checks and production build
 
 ```bash
@@ -22,7 +42,8 @@ npm run check
 ```
 
 The check verifies known dependency vulnerabilities and registry signatures,
-then creates the production site in `dist/`. To build or preview separately:
+creates the production site in `dist/`, and runs the test suite.
+To build or preview separately:
 
 ```bash
 npm run build

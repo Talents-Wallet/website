@@ -686,7 +686,12 @@ iframe:focus-visible {
   }
 
   .phone-frame {
-    width: min(70vw, calc(56svh * .478), 320px);
+    /*
+     * The frame is rotated, so its painted bounding box is slightly taller than
+     * its 149.6:71.5 aspect ratio. A 54svh source cap keeps that final box below
+     * 58% of the viewport in Chromium, Firefox, and WebKit.
+     */
+    width: min(70vw, calc(54svh * .478), 320px);
   }
 
   .signup {
@@ -727,7 +732,7 @@ iframe:focus-visible {
   .substack-embed-shell { margin-top: 16px; height: 462px; }
   .substack-embed { height: 460px; }
   .phone-frame {
-    width: min(74vw, calc(56svh * .478), 300px);
+    width: min(74vw, calc(54svh * .478), 300px);
     transform: rotate(.8deg);
   }
 }
