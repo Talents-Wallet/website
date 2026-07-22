@@ -165,7 +165,7 @@ iframe:focus-visible {
 
 .phone-frame {
   width: clamp(316px, min(28vw, calc((100svh - 80px) * .478)), 438px);
-  aspect-ratio: 71.5 / 149.6;
+  aspect-ratio: 49 / 100;
   padding: clamp(7px, .55vw, 9px);
   position: relative;
   border-radius: 14% / 6.7%;
@@ -201,7 +201,6 @@ iframe:focus-visible {
 
 .phone-screen {
   height: 100%;
-  padding: 3.35cqw 5.7cqw 2.4cqw;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -212,445 +211,105 @@ iframe:focus-visible {
   box-shadow: 0 0 0 1px rgba(37, 29, 43, .06) inset;
 }
 
-.phone-status {
-  height: 8.6cqw;
-  padding-inline: 1.2cqw;
-  display: flex;
-  flex: 0 0 auto;
-  align-items: flex-start;
-  justify-content: space-between;
+.phone-screenshot-viewport {
+  min-height: 0;
   position: relative;
-  color: #171217;
-  font-size: 2.25cqw;
-  font-weight: 760;
-  line-height: 1;
-}
-
-.status-time {
-  padding-top: .45cqw;
-  letter-spacing: -.015em;
-}
-
-.dynamic-island {
-  width: 25.7cqw;
-  height: 6.4cqw;
-  position: absolute;
-  top: -1.35cqw;
-  left: 50%;
-  border-radius: 99px;
-  background: #080608;
-  transform: translateX(-50%);
-  box-shadow: 0 0 0 .25cqw rgba(0, 0, 0, .08);
-}
-
-.status-icons {
-  padding-top: .15cqw;
-  display: flex;
-  align-items: center;
-  gap: 1.1cqw;
-}
-
-.status-cellular {
-  width: 4.3cqw;
-  height: 2.9cqw;
-  fill: currentColor;
-}
-
-.status-wifi {
-  width: 3.8cqw;
-  height: 2.9cqw;
-  overflow: visible;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.6;
-  stroke-linecap: round;
-}
-
-.status-wifi circle {
-  fill: currentColor;
-  stroke: none;
-}
-
-.status-battery {
-  width: 5.5cqw;
-  height: 2.75cqw;
-  padding: .35cqw;
-  display: block;
-  position: relative;
-  border: .28cqw solid currentColor;
-  border-radius: .65cqw;
-}
-
-.status-battery::after {
-  content: '';
-  width: .48cqw;
-  height: 1.05cqw;
-  position: absolute;
-  top: 50%;
-  right: -.82cqw;
-  border-radius: 0 .35cqw .35cqw 0;
-  background: currentColor;
-  transform: translateY(-50%);
-}
-
-.status-battery > span {
-  width: 82%;
-  height: 100%;
-  display: block;
-  border-radius: .2cqw;
-  background: currentColor;
-}
-
-.wallet-header {
-  height: 15.2cqw;
-  display: flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.wallet-brand {
-  display: flex;
-  align-items: center;
-  gap: 2.15cqw;
-}
-
-.wallet-brand img {
-  width: 7.6cqw;
-  height: 7.6cqw;
-  display: block;
-  border-radius: 50%;
-}
-
-.wallet-brand strong {
-  font-size: 4.05cqw;
-  letter-spacing: -.02em;
-}
-
-.wallet-avatar {
-  width: 9.5cqw;
-  height: 9.5cqw;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  color: white;
-  background: var(--action);
-  font-size: 2.15cqw;
-  font-weight: 750;
-}
-
-.balance-card {
-  height: 48.1cqw;
-  padding: 5.5cqw;
-  position: relative;
-  flex: 0 0 auto;
+  flex: 1 1 auto;
   overflow: hidden;
-  border-radius: 8.1cqw 8.1cqw 2.9cqw 8.1cqw;
-  background: var(--coral);
-  color: #241a18;
+  background: #F47C67;
 }
 
-.balance-top {
-  height: 8.3cqw;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+.phone-screenshot {
+  width: 100%;
+  height: auto;
+  display: block;
+  /* Hide Penpot's placeholder status text without clipping the logo at 39px. */
+  transform: translateY(-9cqw);
+}
+
+.iphone-status-bar {
   position: relative;
   z-index: 2;
+  flex: 0 0 11.2cqw;
+  color: #171217;
+  background: #F47C67;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+  pointer-events: none;
 }
 
-.balance-visibility {
-  width: 8.3cqw;
-  height: 8.3cqw;
-  display: grid;
-  place-items: center;
-  border: .25cqw solid rgba(36, 26, 24, .24);
-  border-radius: 50%;
-  color: #3e2927;
-  background: rgba(255, 255, 255, .06);
-}
-
-.balance-visibility svg {
-  width: 4.05cqw;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.7;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.balance {
-  margin-top: 2.7cqw;
-  position: relative;
-  z-index: 2;
-  font-size: 10.95cqw;
-  font-weight: 660;
-  line-height: 1;
-  letter-spacing: -.035em;
-}
-
-.balance small {
-  margin-right: .5cqw;
-  color: #513733;
-  font-size: 5.7cqw;
-  vertical-align: 2.6cqw;
-}
-
-.balance span {
-  font-size: 6.2cqw;
-}
-
-.balance-card p {
-  margin-top: 1.1cqw;
-  position: relative;
-  z-index: 2;
-  color: #482724;
-  font-size: 2.15cqw;
-}
-
-.balance-rings {
-  width: 45.2cqw;
-  height: 45.2cqw;
+.iphone-status-time {
   position: absolute;
-  right: -10.7cqw;
-  top: -13.1cqw;
-  border: 4.75cqw solid rgba(81, 48, 100, .14);
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 4.5cqw rgba(255, 255, 255, .1),
-    0 0 0 9.3cqw rgba(81, 48, 100, .09);
+  top: 4.05cqw;
+  left: 5.25cqw;
+  font-size: 3.2cqw;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  letter-spacing: -.08cqw;
 }
 
-.wallet-actions {
-  margin-top: 3.3cqw;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2.85cqw;
-  flex: 0 0 auto;
+.iphone-dynamic-island {
+  width: 31cqw;
+  height: 8.7cqw;
+  position: absolute;
+  top: 1.35cqw;
+  left: 50%;
+  border-radius: 999px;
+  background: #050505;
+  box-shadow: 0 0 0 .15cqw rgba(0, 0, 0, .12);
+  transform: translateX(-50%);
 }
 
-.wallet-action {
-  height: 26.7cqw;
-  padding: 3.8cqw;
+.iphone-status-icons {
+  position: absolute;
+  top: 3.85cqw;
+  right: 4.8cqw;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  border: .25cqw solid var(--control);
-  border-radius: 6.2cqw;
-  background: white;
+  align-items: center;
+  gap: 1cqw;
 }
 
-.wallet-action--add {
-  border-color: transparent;
-  background: var(--coral);
+.iphone-cellular {
+  width: 4.65cqw;
+  height: 3cqw;
+  fill: currentColor;
 }
 
-.wallet-action > span {
-  width: 9cqw;
-  height: 9cqw;
-  display: grid;
-  place-items: center;
-  margin-bottom: auto;
-  border-radius: 2.85cqw;
-  background: rgba(81, 48, 100, .08);
-}
-
-.wallet-action > span svg {
-  width: 4.6cqw;
+.iphone-wifi {
+  width: 4.15cqw;
+  height: 3.2cqw;
+  overflow: visible;
   fill: none;
   stroke: currentColor;
   stroke-width: 1.8;
   stroke-linecap: round;
-  stroke-linejoin: round;
 }
 
-.wallet-action strong {
-  font-size: 3.3cqw;
-  line-height: 1.1;
-  letter-spacing: -.015em;
-}
-
-.wallet-action small {
-  margin-top: .5cqw;
-  color: var(--muted);
-  font-size: 1.9cqw;
-}
-
-.wallet-list-head {
-  margin-top: 6.65cqw;
-  display: flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.wallet-list-head strong {
-  font-size: 3.55cqw;
-}
-
-.wallet-list-head small {
-  color: var(--muted);
-  font-size: 1.9cqw;
-}
-
-.asset,
-.activity {
-  min-height: 15.2cqw;
-  display: grid;
-  grid-template-columns: 10.2cqw 1fr auto;
-  gap: 2.6cqw;
-  flex: 0 0 auto;
-  align-items: center;
-  border-bottom: .25cqw solid #ded4d5;
-}
-
-.asset > i,
-.activity > i {
-  width: 9.5cqw;
-  height: 9.5cqw;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  color: white;
-  font-size: 3.2cqw;
-  font-style: normal;
-  font-weight: 760;
-}
-
-.asset > i.usdc {
-  background: #2678d4;
-}
-
-.asset > i.eth {
-  background: #665bf0;
-}
-
-.asset > span,
-.activity > span {
-  display: flex;
-  flex-direction: column;
-  gap: .7cqw;
-}
-
-.asset strong,
-.activity strong {
-  font-size: 2.4cqw;
-}
-
-.asset small,
-.activity small {
-  color: var(--muted);
-  font-size: 1.65cqw;
-}
-
-.asset > b,
-.activity > b {
-  font-size: 2.4cqw;
-}
-
-.wallet-list-head--recent {
-  margin-top: 5.2cqw;
-}
-
-.activity > i {
-  border-radius: 3.1cqw;
-  background: #ddf2e9;
-  color: var(--success);
-}
-
-.activity > b {
-  color: var(--success);
-}
-
-.phone-dock {
-  margin-top: auto;
-  flex: 0 0 auto;
-}
-
-.mini-nav {
-  height: 18.2cqw;
-  padding: 1.35cqw 2.2cqw;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  align-items: center;
-  border: .25cqw solid #ded4d5;
-  border-radius: 6cqw;
-  background: rgba(255, 255, 255, .94);
-  box-shadow: 0 2cqw 5cqw rgba(81, 48, 100, .05);
-}
-
-.mini-nav > span {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: .9cqw;
-  color: var(--muted);
-}
-
-.mini-nav > span > svg {
-  width: 4.2cqw;
-  height: 4.2cqw;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.65;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.mini-nav small {
-  font-size: 1.45cqw;
-  line-height: 1;
-}
-
-.mini-nav .active {
-  color: var(--action);
-}
-
-.mini-nav > .pay-action {
-  gap: .55cqw;
-  color: var(--action);
-  transform: translateY(-.35cqw);
-}
-
-.pay-scan {
-  width: 10.8cqw;
-  height: 10.8cqw;
-  display: grid;
-  place-items: center;
-  border-radius: 3.15cqw;
-  color: white;
-  background: var(--action);
-  box-shadow: 0 1.4cqw 2.8cqw rgba(81, 48, 100, .22);
-}
-
-.mini-nav .pay-scan svg {
-  width: 6.5cqw;
-  height: 6.5cqw;
-}
-
-.pay-scan svg path:first-child {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.75;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.pay-scan svg path:last-child {
+.iphone-wifi circle {
   fill: currentColor;
   stroke: none;
 }
 
-.home-indicator {
-  width: 31cqw;
-  height: 1.15cqw;
-  margin: 2.1cqw auto 0;
-  display: block;
-  border-radius: 99px;
-  background: #171217;
-  opacity: .9;
+.iphone-battery {
+  width: 6.65cqw;
+  height: 3.2cqw;
+  overflow: visible;
+}
+
+.iphone-battery-case {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  opacity: .4;
+}
+
+.iphone-battery-tip {
+  fill: currentColor;
+  opacity: .4;
+}
+
+.iphone-battery-level {
+  fill: currentColor;
 }
 
 @media (max-width: 1100px) {
@@ -707,8 +366,8 @@ iframe:focus-visible {
   .phone-frame {
     /*
      * The frame is rotated, so its painted bounding box is slightly taller than
-     * its 149.6:71.5 aspect ratio. A 54svh source cap keeps that final box below
-     * 58% of the viewport in Chromium, Firefox, and WebKit.
+     * its 100:49 aspect ratio. A conservative 54svh width cap keeps the final box
+     * below 58% of the viewport in Chromium, Firefox, and WebKit.
      */
     width: min(70vw, calc(54svh * .478), 320px);
   }
