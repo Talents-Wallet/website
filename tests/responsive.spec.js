@@ -11,14 +11,17 @@ test('private-money heading and metadata are consistent', async ({ page }) => {
   await openLanding(page);
 
   await expect(page.locator('h1 > span')).toHaveText([
-    'Talents',
+    'Talents.',
     'Private money',
-    'made simple',
+    'made simple.',
   ]);
-  await expect(page).toHaveTitle('Talents Private money made simple');
+
+  // The tab and share titles stay on the bare brand name; only the in-page
+  // headline carries the full positioning line.
+  await expect(page).toHaveTitle('Talents');
   await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
     'content',
-    'Talents Private money made simple',
+    'Talents',
   );
 });
 
