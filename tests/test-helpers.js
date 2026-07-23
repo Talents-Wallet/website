@@ -93,6 +93,38 @@ export async function inspectLayout(page, viewport) {
     assertInsideViewport('signup prompt', textRectFor('.signup-lede'));
     assertInsideViewport('signup shell', signupShell);
 
+    const socialIcons = [...document.querySelectorAll('.site-footer .social-icon')].map(
+      (icon) => icon.getBoundingClientRect(),
+    );
+    if (socialIcons.length !== 2) {
+      violations.push(`expected 2 social icons in the footer, found ${socialIcons.length}`);
+    }
+
+    const overlapsRect = (a, b) =>
+      Boolean(a && b) &&
+      Math.min(a.right, b.right) - Math.max(a.left, b.left) > tolerance &&
+      Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top) > tolerance;
+
+    // The tilted phone frame's bounding box overhangs its painted pixels by
+    // up to ~9px per side, and its corners are rounded; deflate it so icons
+    // sitting in the empty overhang are not reported as collisions.
+    const phoneCore = phone && {
+      left: phone.left + 12,
+      right: phone.right - 12,
+      top: phone.top + 12,
+      bottom: phone.bottom - 12,
+    };
+
+    socialIcons.forEach((icon, index) => {
+      assertInsideViewport(`social icon ${index + 1}`, icon);
+      if (overlapsRect(icon, phoneCore)) {
+        violations.push(`social icon ${index + 1} overlaps the phone mockup`);
+      }
+      if (overlapsRect(icon, signupShell)) {
+        violations.push(`social icon ${index + 1} overlaps the signup embed`);
+      }
+    });
+
     const headingLineCount = new Set(
       [...document.querySelectorAll('h1 > span')].map((line) =>
         Math.round(line.getBoundingClientRect().top),

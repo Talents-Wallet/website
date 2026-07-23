@@ -25,6 +25,25 @@ test('private-money heading and metadata are consistent', async ({ page }) => {
   );
 });
 
+test('social footer links to the official profiles', async ({ page }) => {
+  await openLanding(page);
+
+  const links = page.locator('.site-footer a');
+  await expect(links).toHaveCount(2);
+
+  const contract = [
+    { label: 'Talents on X', href: 'https://x.com/TalentsWallet' },
+    { label: 'Talents on GitHub', href: 'https://github.com/Talents-Wallet' },
+  ];
+  for (const [index, { label, href }] of contract.entries()) {
+    const link = links.nth(index);
+    await expect(link).toHaveAttribute('href', href);
+    await expect(link).toHaveAttribute('aria-label', label);
+    await expect(link).toHaveAttribute('target', '_blank');
+    await expect(link).toHaveAttribute('rel', 'noopener');
+  }
+});
+
 test('dense width and height sweep has no layout violations @responsive-sweep', async ({
   page,
 }, testInfo) => {

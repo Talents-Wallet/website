@@ -23,7 +23,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html, body { min-width: 320px; min-height: 100%; }
-body { margin: 0; background: var(--canvas); color: var(--ink); overflow-x: hidden; }
+body { margin: 0; position: relative; background: var(--canvas); color: var(--ink); overflow-x: hidden; }
 h1, p { margin: 0; }
 svg { display: block; }
 iframe:focus-visible {
@@ -312,6 +312,38 @@ iframe:focus-visible {
   fill: currentColor;
 }
 
+.site-footer {
+  position: absolute;
+  right: 22px;
+  bottom: max(14px, env(safe-area-inset-bottom));
+  z-index: 3;
+  display: flex;
+}
+
+.social-link {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  color: var(--muted);
+  transition: color .18s ease;
+}
+
+.social-link:hover { color: var(--ink); }
+
+.social-link:focus-visible {
+  color: var(--ink);
+  outline: 3px solid var(--focus);
+  outline-offset: -7px;
+}
+
+.social-icon {
+  width: 21px;
+  height: 21px;
+  fill: currentColor;
+}
+
 @media (max-width: 1100px) {
   .hero {
     width: min(calc(100% - 64px), 980px);
@@ -321,6 +353,22 @@ iframe:focus-visible {
 
    .phone-frame {
     width: clamp(300px, min(36vw, calc((100svh - 64px) * .478)), 390px);
+  }
+
+  /*
+   * At these widths the phone mockup can reach within ~34px of the viewport's
+   * right edge and ~33px of its bottom, leaving only a narrow corner gutter.
+   * Stacking the icons keeps them inside it.
+   */
+  .site-footer {
+    right: 2px;
+    bottom: 6px;
+    flex-direction: column;
+  }
+
+  .social-icon {
+    width: 18px;
+    height: 18px;
   }
 }
 
@@ -387,13 +435,26 @@ iframe:focus-visible {
   .substack-embed-shell { margin: 20px auto 0; }
   .backdrop-orbit--one { width: 760px; right: -470px; top: 70%; }
   .backdrop-orbit--two { width: 570px; right: -370px; top: 70%; }
+
+  .site-footer {
+    right: max(8px, env(safe-area-inset-right));
+    bottom: max(6px, env(safe-area-inset-bottom));
+    flex-direction: row;
+  }
+
+  .social-icon {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 @media (max-width: 520px) {
   .hero {
     width: calc(100% - 40px);
     padding-top: max(44px, env(safe-area-inset-top));
-    padding-bottom: max(56px, env(safe-area-inset-bottom));
+    /* Additive so the social footer keeps clear floor below the embed even
+       when a home-indicator inset pushes it up. */
+    padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
   }
 
   .product-lede,
