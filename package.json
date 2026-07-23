@@ -11,16 +11,19 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview": "npm run build && wrangler dev",
     "audit": "npm audit --audit-level=high",
     "audit:signatures": "npm audit signatures",
     "test": "playwright test",
     "test:update": "playwright test --project=chromium --grep @visual --update-snapshots",
-    "check": "npm run audit && npm run audit:signatures && npm run build && npm run test"
+    "check": "npm run audit && npm run audit:signatures && npm run build && npm run test",
+    "deploy": "npm run build && wrangler deploy"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.46.0",
     "@fontsource/aileron": "5.3.0",
     "@playwright/test": "1.61.1",
-    "vite": "8.1.5"
+    "vite": "8.1.5",
+    "wrangler": "^4.113.0"
   }
 }
